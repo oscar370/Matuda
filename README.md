@@ -182,10 +182,11 @@ This project is licensed under the GPL-3.0 License. See LICENSE file for details
 - [Matugen](https://github.com/InioX/matugen) - Color palette generation.
 - [Tauri](https://tauri.app/) - Cross-platform application framework.
 - [React](https://react.dev/) - The library for web interfaces.
-- [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) - Lightweight library for global state management in React applications.
-- [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework.
-- [React Colorful](https://github.com/omgovich/react-colorful) - A tiny color picker component for React.
 - [React Router DOM](https://reactrouter.com/) - Routing library for React.
+- [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework.
+- [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) - Lightweight library for global state management in React applications.
+- [React Colorful](https://github.com/omgovich/react-colorful) - A tiny color picker component for React.
+- [React Host Toast](https://github.com/timolins/react-hot-toast/) - Toast component for React.
 
 ## Support
 
