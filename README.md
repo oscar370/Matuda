@@ -5,8 +5,6 @@
 
 Control panel for [Matugen](https://github.com/InioX/matugen) with service and daemon that detects wallpaper changes in GNOME and recreates templates
 
-<h3 align="center"><img width="600" height="800" alt="Matuda GUI" src="https://github.com/user-attachments/assets/e2b1e248-5d14-45fa-89af-65811e6bc11d" /></h3>
-
 ## Install
 
 ### Requirements
@@ -56,6 +54,8 @@ Here you will find:
 To learn about these settings, visit the Matugen documentation.
 
 If you want a Matugen feature that has not yet been included, open an issue [here](https://github.com/oscar370/Matuda/issues).
+
+<h3 align="center"><img width="600" height="800" alt="Matuda GUI" src="https://github.com/user-attachments/assets/e2b1e248-5d14-45fa-89af-65811e6bc11d" /></h3>
 
 ## Development
 
