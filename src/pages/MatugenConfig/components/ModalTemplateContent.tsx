@@ -62,7 +62,7 @@ export default function ModalTemplateContent({
       />
 
       <div className="mt-2 flex gap-2">
-        <Button variant="secondary" onClick={handleDeleteTemplate}>
+        <Button variant="secondary" onClick={(e) => handleDeleteTemplate(e)}>
           Delete
         </Button>
         <Button type="submit">Submit</Button>

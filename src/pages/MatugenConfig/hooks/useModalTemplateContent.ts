@@ -51,8 +51,6 @@ export function useModalTemplateContent(
       post_hook: form.postHook,
     };
 
-    console.log(data);
-
     if (name) {
       setEditTemplate(name, form.name, data);
       toast.success("Changes applied");
@@ -67,7 +65,6 @@ export function useModalTemplateContent(
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     const newValue = name === "name" ? value.replace(/\s+/g, "") : value;
-    console.log(name);
 
     setForm((prev) => ({
       ...prev,
@@ -75,8 +72,17 @@ export function useModalTemplateContent(
     }));
   }
 
-  function handleDeleteTemplate() {
-    setDeleteTemplate(form.name);
+  function handleDeleteTemplate(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    e.preventDefault();
+
+    if (name in templates === false) {
+      toast.error("You cannot delete a template that does not exist");
+      return;
+    }
+
+    setDeleteTemplate(name);
 
     handleModalClose();
     toast.success("The template has been removed");
