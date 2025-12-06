@@ -1,6 +1,9 @@
 # Matuda
+<img width="512" height="512" alt="Matuda Icon" src="https://github.com/user-attachments/assets/65b6057d-62e3-494e-b364-29d5909ea302" />
 
 Control panel for [Matugen](https://github.com/InioX/matugen) with service and daemon that detects wallpaper changes in GNOME and recreates templates
+
+<img width="600" height="800" alt="Matuda GUI" src="https://github.com/user-attachments/assets/e2b1e248-5d14-45fa-89af-65811e6bc11d" />
 
 ## Install
 
