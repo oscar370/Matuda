@@ -23,6 +23,8 @@ export function useAppManger() {
   }
 
   async function handleLoadStyles() {
+    if (!isCustomCSS) return;
+
     setIsBusy(true);
 
     try {
