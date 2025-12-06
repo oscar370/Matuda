@@ -186,7 +186,7 @@ This project is licensed under the GPL-3.0 License. See LICENSE file for details
 - [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework.
 - [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) - Lightweight library for global state management in React applications.
 - [React Colorful](https://github.com/omgovich/react-colorful) - A tiny color picker component for React.
-- [React Host Toast](https://github.com/timolins/react-hot-toast/) - Toast component for React.
+- [React Hot Toast](https://github.com/timolins/react-hot-toast/) - Toast component for React.
 
 ## Support
 
