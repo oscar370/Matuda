@@ -12,7 +12,7 @@ Control panel for [Matugen](https://github.com/InioX/matugen) with service and d
 
 ### Steps
 
-- Download the binary corresponding to your package manager [here]().
+- Download the binary corresponding to your package manager [here](https://github.com/oscar370/Matuda/releases).
 - Install and run.
 
 ## Usage
@@ -50,7 +50,7 @@ Here you will find:
 
 To learn about these settings, visit the Matugen documentation.
 
-If you want a Matugen feature that has not yet been included, open an issue [here]().
+If you want a Matugen feature that has not yet been included, open an issue [here](https://github.com/oscar370/Matuda/issues).
 
 ## Development
 
@@ -89,6 +89,7 @@ npm i
 
 ### Project structure
 
+```
 Matuda/
 ├─ daemon/
 │ ├─ main.rs
@@ -114,6 +115,7 @@ Matuda/
 ├─ .gitignore
 ├─ package.json
 ├─ README.md
+```
 
 > Some files and folders are omitted.
 
