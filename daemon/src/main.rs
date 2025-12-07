@@ -31,7 +31,9 @@ struct AppConfig {
 #[derive(Serialize, Deserialize, Debug)]
 struct TemplateConfig {
     input_path: String,
-    output_path: String,
+    output_path: Option<String>,
+    pre_hook: String,
+    post_hook: String,
 }
 
 #[derive(Parser)]
@@ -124,7 +126,7 @@ fn get_config(path: &str) -> Result<ConfigToml, String> {
 }
 
 fn generate_with_fallback(matugen_path: &String, config_path: &String, config: &ConfigToml) {
-    println!("Generating palette with fallback color");
+    println!("[INFO] Generating palette with fallback color");
 
     match Command::new(&matugen_path)
         .arg("color")
@@ -172,7 +174,7 @@ fn generate_with_image(
     temp_path: &PathBuf,
     config: &ConfigToml,
 ) {
-    println!("Generating palette with image");
+    println!("[INFO] Generating palette with image");
 
     match Command::new(&matugen_path)
         .arg("image")

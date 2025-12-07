@@ -1,6 +1,10 @@
 import { useAppStore } from "@/store/useAppStore";
-import { ColorSchema, ResizeFilter } from "@/types";
+import { ColorSchema, ConfigToml, ResizeFilter } from "@/types";
+import { openFile } from "@/utils/openFile";
+import { parseConfig } from "@/utils/parseConfig";
+import { load } from "js-toml";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function usePaletteConfig() {
   const colorSchema = useAppStore((state) => state.configToml.app.color_schema);
@@ -10,6 +14,7 @@ export function usePaletteConfig() {
     (state) => state.configToml.app.fallback_color,
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalImportOpen, setIsModalImportOpen] = useState(false);
   const setFallbackColor = useAppStore((state) => state.setFallbackColor);
   const setColorSchema = useAppStore((state) => state.setColorSchema);
   const setContrast = useAppStore((state) => state.setContrast);
@@ -18,6 +23,8 @@ export function usePaletteConfig() {
     (state) => state.configToml.app.resize_filter,
   );
   const setResizeFilter = useAppStore((state) => state.setResizeFilter);
+  const setIsBusy = useAppStore((store) => store.setIsBusy);
+  const setImportFile = useAppStore((state) => state.setImportFile);
 
   function handleSchemaChange(value: string) {
     setColorSchema(value as ColorSchema);
@@ -47,6 +54,32 @@ export function usePaletteConfig() {
     setIsModalOpen(false);
   }
 
+  function handleImportConfigClick() {
+    setIsModalImportOpen(true);
+  }
+
+  function handleModalImportClose() {
+    setIsModalImportOpen(false);
+  }
+
+  async function handleImportConfig() {
+    setIsBusy(true);
+    try {
+      const file = await openFile();
+      const data = load(file) as Partial<ConfigToml>;
+      const finalConfig = parseConfig(data);
+
+      setImportFile(finalConfig);
+      toast.success("Import completed successfully");
+    } catch (error) {
+      toast.error(`${error}`);
+      console.error(error);
+    } finally {
+      setIsBusy(false);
+      handleModalImportClose();
+    }
+  }
+
   return {
     colorSchema,
     contrast,
@@ -54,6 +87,7 @@ export function usePaletteConfig() {
     resizeFilter,
     fallbackColor,
     isModalOpen,
+    isModalImportOpen,
     handleSchemaChange,
     handleContrastChange,
     handleDarkChange,
@@ -61,5 +95,8 @@ export function usePaletteConfig() {
     handleFallbackOpen,
     handleFallbackChange,
     handleModalClose,
+    handleImportConfigClick,
+    handleModalImportClose,
+    handleImportConfig,
   };
 }

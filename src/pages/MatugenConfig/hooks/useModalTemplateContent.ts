@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export function useModalTemplateContent(
   name: string,
   inputPath: string,
-  outputPath: string,
+  outputPath: string | null,
   preHook: string,
   postHook: string,
   handleModalClose: () => void,
@@ -13,7 +13,7 @@ export function useModalTemplateContent(
   const [form, setForm] = useState({
     name,
     inputPath,
-    outputPath,
+    outputPath: outputPath ?? "",
     preHook,
     postHook,
   });
@@ -23,7 +23,13 @@ export function useModalTemplateContent(
   const setDeleteTemplate = useAppStore((state) => state.setDeleteTemplate);
 
   useEffect(() => {
-    setForm({ name, inputPath, outputPath, preHook, postHook });
+    setForm({
+      name,
+      inputPath,
+      outputPath: outputPath ?? "",
+      preHook,
+      postHook,
+    });
   }, [name, inputPath, outputPath]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -46,7 +52,7 @@ export function useModalTemplateContent(
 
     const data = {
       input_path: form.inputPath,
-      output_path: form.outputPath,
+      output_path: form.outputPath.trim() === "" ? null : form.outputPath,
       pre_hook: form.preHook,
       post_hook: form.postHook,
     };

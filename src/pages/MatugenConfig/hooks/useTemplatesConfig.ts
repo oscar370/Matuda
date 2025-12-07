@@ -2,13 +2,17 @@ import { useAppStore } from "@/store/useAppStore";
 import { Template } from "@/types";
 import { useEffect, useState } from "react";
 
+type ActiveTemplate = Template & {
+  name: string;
+};
+
 const ACTIVE_TEMPLATE = {
   name: "",
   input_path: "",
   output_path: "",
   pre_hook: "",
   post_hook: "",
-};
+} as ActiveTemplate;
 
 export function useTemplatesConfig() {
   const [activeTemplate, setActiveTemplate] = useState(ACTIVE_TEMPLATE);

@@ -18,7 +18,7 @@ export type AppConfig = {
 
 export type Template = {
   input_path: string;
-  output_path: string;
+  output_path: string | null;
   pre_hook: string;
   post_hook: string;
 };

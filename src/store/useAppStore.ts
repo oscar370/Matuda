@@ -33,6 +33,7 @@ type AppActions = {
   setEditTemplate: (oldKey: string, key: string, data: Template) => void;
   setAddTemplate: (key: string, data: Template) => void;
   setDeleteTemplate: (key: string) => void;
+  setImportFile: (data: ConfigToml) => void;
   reset: () => void;
 };
 
@@ -118,6 +119,7 @@ export const useAppStore = create<AppStore>()(
             },
           };
         }),
+      setImportFile: (data) => set({ configToml: data }),
       reset: () => set(store.getInitialState()),
     }),
     { name: "app-store" },

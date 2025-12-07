@@ -6,6 +6,8 @@ use tauri::Manager;
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             commands::get_service_status,
@@ -18,6 +20,7 @@ pub fn run() {
             commands::clean_app,
             commands::setup_config,
             commands::load_styles,
+            commands::reinstall_binaries_service,
         ])
         .setup(|app| {
             let mut daemon = appmanager::Daemon::new();

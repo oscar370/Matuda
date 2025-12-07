@@ -82,6 +82,20 @@ export function useAppManger() {
     setIsModalOpen(false);
   }
 
+  async function handleReinstallBinaries() {
+    setIsBusy(true);
+
+    try {
+      await invoke("reinstall_binaries_service");
+      toast.success("Reinstalled binaries and service");
+    } catch (error) {
+      toast.error(`Failed to reinstall the binaries or service: ${error}`);
+      setIsServiceInstalled(false);
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
   return {
     isModalOpen,
     isCustomCSS,
@@ -90,5 +104,6 @@ export function useAppManger() {
     handleCleanApp,
     handleOpenModal,
     handleCancelClean,
+    handleReinstallBinaries,
   };
 }

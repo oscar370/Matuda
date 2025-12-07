@@ -10,6 +10,7 @@ export default function AppManager() {
     handleCleanApp,
     handleOpenModal,
     handleCancelClean,
+    handleReinstallBinaries,
   } = useAppManger();
 
   return (
@@ -21,6 +22,9 @@ export default function AppManager() {
           onChange={handleActivateStylesChange}
         />
         <Button onClick={handleLoadStyles}>Load styles</Button>
+        <Button onClick={handleReinstallBinaries}>
+          Reinstall binaries and service
+        </Button>
         <Button onClick={handleOpenModal}>Clean app</Button>
       </Group>
 

@@ -146,3 +146,23 @@ pub fn load_styles(daemon: State<Daemon>) -> Result<String, String> {
 
     Ok(styles)
 }
+
+#[tauri::command]
+pub fn reinstall_binaries_service(daemon: State<Daemon>, app: AppHandle) -> Result<(), String> {
+    let matugen_path = daemon.get_matugen_path();
+    let daemon_path = daemon.get_daemon_path();
+
+    clean_service(daemon.clone()).map_err(|e| format!("{}", e))?;
+
+    fs::remove_file(matugen_path).map_err(|e| format!("Failed to remove Matugen binary: {}", e))?;
+
+    fs::remove_file(daemon_path).map_err(|e| format!("Failed to remove Daemon binary: {}", e))?;
+
+    daemon.setup_daemon(&app).map_err(|e| format!("{}", e))?;
+
+    daemon.setup_matugen(&app).map_err(|e| format!("{}", e))?;
+
+    daemon.setup_service().map_err(|e| format!("{}", e))?;
+
+    Ok(())
+}

@@ -12,31 +12,31 @@ use toml;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ConfigToml {
-    config: MatugenConfig,
-    app: AppConfig,
-    templates: HashMap<String, TemplateConfig>,
+    pub config: MatugenConfig,
+    pub app: AppConfig,
+    pub templates: HashMap<String, TemplateConfig>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct MatugenConfig {
-    version_check: bool,
+pub struct MatugenConfig {
+    pub version_check: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct AppConfig {
-    color_schema: String,
-    contrast: f64,
-    mode: String,
-    resize_filter: String,
-    fallback_color: String,
+pub struct AppConfig {
+    pub color_schema: String,
+    pub contrast: f64,
+    pub mode: String,
+    pub resize_filter: String,
+    pub fallback_color: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct TemplateConfig {
-    input_path: String,
-    output_path: String,
-    pre_hook: String,
-    post_hook: String,
+pub struct TemplateConfig {
+    pub input_path: String,
+    pub output_path: Option<String>,
+    pub pre_hook: String,
+    pub post_hook: String,
 }
 
 #[derive(Default)]
@@ -199,7 +199,7 @@ impl Daemon {
         fs::copy(&matugen_resource_path, self.matugen_path.clone())
             .map_err(|e| format!("Failed to copy Matugen: {}", e))?;
 
-        println!("Copied Matugen binary");
+        println!("[INFO] Copied Matugen binary");
 
         Ok(())
     }
@@ -241,9 +241,9 @@ impl Daemon {
             .write_to_file(self.service_path.clone())
             .map_err(|e| format!("Failed to write service file: {}", e))?;
 
-        println!("Service written at: {}", self.service_path.display());
+        println!("[INFO] Service written at: {}", self.service_path.display());
 
-        println!("Restarting systemd");
+        println!("[INFO] Restarting systemd");
 
         Command::new("systemctl")
             .arg("--user")
@@ -251,7 +251,7 @@ impl Daemon {
             .output()
             .map_err(|e| format!("Failed to restart systemctl: {}", e))?;
 
-        print!("Starting the service");
+        println!("[INFO] Starting the service");
 
         Command::new("systemctl")
             .arg("--user")

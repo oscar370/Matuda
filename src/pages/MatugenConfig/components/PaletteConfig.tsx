@@ -1,4 +1,5 @@
 import {
+  Button,
   Group,
   Modal,
   Navigation,
@@ -19,6 +20,7 @@ export default function PaletteConfig() {
     resizeFilter,
     fallbackColor,
     isModalOpen,
+    isModalImportOpen,
     handleSchemaChange,
     handleContrastChange,
     handleDarkChange,
@@ -26,11 +28,21 @@ export default function PaletteConfig() {
     handleFallbackOpen,
     handleFallbackChange,
     handleModalClose,
+    handleImportConfigClick,
+    handleModalImportClose,
+    handleImportConfig,
   } = usePaletteConfig();
 
   return (
     <>
-      <Group title="Palette config">
+      <Group
+        title="Palette config"
+        button={
+          <Button variant="minimal" onClick={handleImportConfigClick}>
+            Import Config
+          </Button>
+        }
+      >
         <Select label="Color schema">
           {COLOR_SCHEMAS.map(({ schema, name }) => (
             <Option
@@ -97,6 +109,26 @@ export default function PaletteConfig() {
             onChange={handleFallbackChange}
             className="rounded-sm bg-[color-mix(in_srgb,var(--surface),var(--text)_10%)] px-1 py-1.5"
           />
+        </div>
+      </Modal>
+
+      <Modal
+        title="Import config"
+        isOpen={isModalImportOpen}
+        onClose={handleModalImportClose}
+      >
+        <p className="mb-2 text-center">
+          <span className="font-bold text-(--accent) uppercase">Warning</span>:
+          This will delete your current configuration, including templates, and
+          replace it with whatever is in your archive. It is recommended that
+          you back up <code>~/.config/matuda/config.toml</code>.
+        </p>
+        <div className="flex gap-2">
+          <Button variant="secondary" onClick={handleModalImportClose}>
+            Cancel
+          </Button>
+
+          <Button onClick={handleImportConfig}>Continue</Button>
         </div>
       </Modal>
     </>
